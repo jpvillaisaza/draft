@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="color-scheme" content="light dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Draft</title>
+
+    <style>
+      body {
+        font-family: system-ui, sans-sans-serif;
+        line-height: 1.5;
+        text-align: center;
+      }
+      .textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p id="time"></p>
+      <form id="form">
+        <div>
+          <textarea autofocus class="textarea" rows="16"></textarea>
+        </div>
+        <div>
+          <input type="reset" value="Reset">
+        </div>
+      </form>
+    </main>
+    <script>
+      const form = document.getElementById("form");
+      const time = document.getElementById("time");
+      var second = 59;
+      time.innerText = second;
+      setInterval(_ => {
+        if (second) {
+          second = second - 1;
+        } else {
+          second = 59;
+          form.reset();
+        };
+        time.innerText = second;
+      }, 1000);
+    </script>
+  </body>
+</html>
