@@ -34,15 +34,25 @@
       </form>
     </main>
     <script>
+      const getInt = value => {
+        const n = parseInt(value);
+        if (!isNaN(n) && isFinite(n) && n - value === 0) {
+          return n;
+        }
+        return 59;
+      };
+      const params = new URLSearchParams(window.location.search);
+      const timeParam = params.get("time")
+      const n = getInt(timeParam);
       const form = document.getElementById("form");
       const time = document.getElementById("time");
-      var second = 59;
+      var second = n;
       time.innerText = second;
       setInterval(_ => {
         if (second) {
-          second = second - 1;
+          second = n >= 0 ? second - 1 : second + 1;
         } else {
-          second = 59;
+          second = n;
           form.reset();
         };
         time.innerText = second;
